@@ -1,0 +1,14 @@
+.navbar{
+    /* background-color: #4fc0cd; */
+    box-shadow: 0 0 4px 0 gray;
+}
+.container{
+    height: auto;
+    /* background-color: #ccccda; */
+}
+.glass{
+    height: auto;
+    width: 92%;
+    margin: auto;
+}
+
