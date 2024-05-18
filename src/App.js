@@ -5,7 +5,8 @@ import TextForm from './components/TextForm';
 import About from './components/About'
 import Alert from './components/Alert';
 import {
-  BrowserRouter as Router,
+  // BrowserRouter as Router,
+  Navigate,
   Route,
   Routes,
   BrowserRouter
@@ -50,8 +51,9 @@ function App() {
       <Alert alert={alert} />
       <div className='glass my-3'>
           <Routes>
+          <Route path="*" element={<Navigate to="/home" />} />
+          <Route exact path="/home" element={<TextForm heading="Enter any Text" mode={mode} showAlert={showAlert}/>}></Route>
           <Route exact path="/about" element={<About mode={mode}/>}></Route>   
-          <Route exact path="/" element={<TextForm heading="Enter any Text" mode={mode} showAlert={showAlert}/>}></Route>
         </Routes>
       </div>
       </BrowserRouter>

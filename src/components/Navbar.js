@@ -1,25 +1,30 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom';
 
-
 export default function Navbar(props) {
 
-          const yellow = () => {
-           document.body.style.backgroundColor = 'yellow';
-         }
+  const [color, setcolor] = useState('#ffffff');
 
-         const green = () => {
-           document.body.style.backgroundColor = 'green';
-         }
+  const yellow = () => {
+    document.body.style.backgroundColor = 'yellow';
+  }
 
-         const red = () => {
-            document.body.style.backgroundColor = 'red';
-         }
+  const red = () => {
+    document.body.style.backgroundColor = 'red';
+  }
 
-          const light = () => {
-           document.body.style.backgroundColor = 'white';
-         }
+  const light = () => {
+    document.body.style.backgroundColor = 'white';
+  }
+
+  useEffect(() => {
+    document.body.style.backgroundColor = color;
+  }, [color]);
+
+  const handleChange = (event) => {
+    setcolor(event.target.value)
+  }
 
   return (
     <div className='flex'>
@@ -32,19 +37,18 @@ export default function Navbar(props) {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <Link className="nav-link active" aria-current="page" to="/">Home</Link>
+                <Link className="nav-link active" aria-current="page" to="/home">Home</Link>
               </li>
               <li className="nav-item">
                 <Link className="nav-link" to="/about">{props.About}</Link>
               </li>
             </ul>
-
+            <input type="color" className="form-control form-control-color" id="myColor" value={color} title="Choose a color" onChange={handleChange} />
             <button className="btn btn-warning mx-2 my-2" onClick={yellow}>Yellow</button>
-            <button className="btn btn-success my-2 mx-2" onClick={green}>Green</button>
             <button className="btn btn-danger my-2 mx-2" onClick={red}>Red</button>
             <button className="btn btn-light mx-2 my-2" onClick={light}>Light</button>
 
-            <div className={`form-check form-switch text-${props.mode === 'light'?'dark':'light'}`}>
+            <div className={`form-check form-switch text-${props.mode === 'light' ? 'dark' : 'light'}`}>
               <input className="form-check-input" type="checkbox" onClick={props.toggleMode} role="switch" id="flexSwitchCheckDefault" />
               <label className="form-check-label" htmlFor="flexSwitchCheckDefault"></label>
             </div>
